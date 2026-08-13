@@ -1,19 +1,46 @@
-# GameDev-Structure
+<h1 align="center">🎮 GameDev-Structure</h1>
 
-Game Development Project File Structure
-游戏开发项目文件结构示例模版
+<p align="center">
+  <b>Game Development Project File Structure</b><br>
+  <sub>游戏开发项目文件结构示例模版</sub>
+</p>
 
-采用模块化、分层设计理念，确保代码的可维护性和可复用性。
+<p align="center">
+  采用模块化、分层设计理念，确保代码的 <b>可维护性</b> 和 <b>可复用性</b>。
+</p>
+
+---
 
 ## 📋 设计原则
 
-- **分层架构**：自上而下引用形成单向依赖，杜绝循环依赖，同层内依功能关系处理引用
-- **模块化**：按功能模块划分，便于团队协作和代码管理
-- **高内聚低耦合**：模块内按技术职责划分，UI 按场景组织
-- **编译期分离**：Editor / Runtime 严格隔离，减小包体，提高安全性
-- **可复用性**：核心功能和工具设计为可跨项目复用（Framework、EditorTool、RuntimeTool）
-- **可扩展性**：插件化设计，支持动态扩展（RuntimeTool）
-- **数据流分层**：Config（配置表结构） → Data（运行时数据结构） → DataService（数据绑定） → Service（业务逻辑）。符合 MVVM/MVP 设计模式，DataService 作为 ViewModel 层，实现数据与表现的分离。
+<table>
+<tr>
+<td width="50%">
+
+### 🏗️ 架构原则
+- **分层架构** — 自上而下单向依赖，杜绝循环引用
+- **模块化** — 按功能模块划分，便于团队协作
+- **高内聚低耦合** — 按技术职责划分，UI 按场景组织
+
+</td>
+<td width="50%">
+
+### 🔧 工程原则
+- **编译期分离** — Editor / Runtime 严格隔离，减小包体
+- **可复用性** — Framework、EditorTool、RuntimeTool 可跨项目复用
+- **可扩展性** — 插件化设计，支持动态扩展
+
+</td>
+</tr>
+</table>
+
+### 📊 数据流分层
+
+Config（配置表结构） → Data（运行时数据结构） → DataService（数据绑定） → Service（业务逻辑）
+
+> 符合 MVVM / MVP 设计模式，DataService 作为 ViewModel 层，实现数据与表现的分离。
+
+---
 
 ## 📁 分类定义
 
@@ -26,10 +53,16 @@ Game Development Project File Structure
 | **EditorTool** | 编辑器效率工具 | 换了项目依旧可以使用的编辑器工具 | 资源的自动化处理、快速创建字体资源、网络环境配置等 |
 | **RuntimeTool** | 自增插件性功能 | 换了项目依旧可以使用的运行时插件 | 自定义扩展的UI控件、UI特效、红点管理系统、访问非Unity文件路径等 |
 | **UI** | 用户界面 | 游戏的用户界面实现 | 处理游戏中的界面展示、交互逻辑等 |
-| **Packages** | 第三方插件工具 | 项目使用的第三方库和插件 | 提供外部依赖功能 |
-| **Resources** | 资源文件 | 游戏中的各种资源 | 存储模型、材质、音效、UI资源等 |
+| **Plugins** | 第三方插件工具 | 手动导入的第三方插件 | 提供外部依赖功能 |
+| **Packages** | 第三方插件工具 | 通过依赖包管理器导入 | 提供外部依赖功能 |
+| **Resources** | 资源文件 | 游戏专属资源 | 存储模型、材质、音效、UI资源等 |
+
+---
 
 ## 📂 详细目录结构
+
+<details open>
+<summary><b>点击展开/收起完整目录树</b></summary>
 
 ```
 Game-Project-Structure/
@@ -97,28 +130,57 @@ Game-Project-Structure/
 └── README.md
 ```
 
+</details>
+
+---
+
 ## 🔄 程序集引用关系
 
 采用**严格分层架构**，遵循**自上而下单向依赖**原则：
 
-```
-┌──────────────────────────────────────────────┐
-│                 EditorTool                   │  编辑器工具层
-├──────────────────────────────────────────────┤
-│                     UI                       │  UI 表现层
-├──────────────────────────────────────────────┤
-│                  Function                    │  业务逻辑核心层
-├──────────────────────────────────────────────┤
-│                 RuntimeTool                  │  插件扩展层
-├──────────────────────────────────────────────┤
-│                  Framework                   │  基建框架层
-├──────────────────────────────────────────────┤
-│                  Packages                    │  第三方依赖
-└──────────────────────────────────────────────┘
-           ▲ 依赖方向：自上而下 同层内依功能关系处理引用
+```mermaid
+graph TB
+    subgraph 应用层
+        ET[🔧 EditorTool<br/>编辑器工具层]
+        UI[🎨 UI<br/>UI 表现层]
+    end
+    
+    subgraph 核心层
+        FN[⚙️ Function<br/>业务逻辑核心层]
+    end
+    
+    subgraph 基础设施层
+        RT[🧩 RuntimeTool<br/>插件扩展层]
+        FW[🏗️ Framework<br/>基建框架层]
+    end
+    
+    subgraph 外部依赖
+        PKG[📦 Packages<br/>第三方依赖]
+    end
+    
+    ET --> UI
+    ET --> FN
+    ET -.-> RT
+    ET -.-> FW
+    UI --> FN
+    UI -.-> RT
+    UI -.-> FW
+    FN --> RT
+    FN --> FW
+    RT --> FW
+    FW --> PKG
+    
+    style ET fill:#E6E0FA,stroke:#7C3AED,color:#000
+    style UI fill:#E6E0FA,stroke:#7C3AED,color:#000
+    style FN fill:#FFF3CD,stroke:#F59E0B,color:#000
+    style RT fill:#E6E0FA,stroke:#7C3AED,color:#000
+    style FW fill:#D6DAE8,stroke:#6B7280,color:#000
+    style PKG fill:#F5F5F5,stroke:#9CA3AF,color:#000
 ```
 
 ### 引用规则
 
-- **只能上引用下**：上层可以引用下层，禁止反向依赖，杜绝循环引用
-- **同层内依功能关系处理引用**：同一层级内的模块间引用根据实际功能需求决定
+| 规则 | 说明 | 图示 |
+|------|------|:--:|
+| **只能上引用下** | 上层可引用下层，禁止反向依赖，杜绝循环引用 | ⬇️ |
+| **同层内依功能关系处理引用** | 同一层级内的模块间引用根据实际功能需求决定 | ↔️ |
