@@ -1,2 +1,171 @@
 # GameDev-Structure
+
 Game Development Project File Structure
+
+游戏项目目录结构示例，采用模块化、分层设计理念，确保代码的可维护性和可复用性。
+
+## 📋 设计原则
+
+- **分层架构**：自上而下引用形成单向依赖，杜绝循环依赖，同层内依功能关系处理引用
+- **模块化**：按功能模块划分，便于团队协作和代码管理
+- **高内聚低耦合**：模块内按技术职责划分，UI 按场景组织
+- **编译期分离**：Editor / Runtime 严格隔离，减小包体，提高安全性
+- **可复用性**：核心功能和工具设计为可跨项目复用（Framework、EditorTool、RuntimeTool）
+- **可扩展性**：插件化设计，支持动态扩展（RuntimeTool）
+- **数据流分层**：Config（配置表结构） → Data（运行时数据结构） → DataService（数据绑定） → Service（业务逻辑）。符合 MVVM/MVP 设计模式，DataService 作为 ViewModel 层，实现数据与表现的分离。
+
+## 📁 分类定义
+
+### 核心目录
+
+| 目录名称 | 描述 | 定位 | 职责 |
+|---------|------|------|------|
+| **Framework** | 基础框架 | 换项目依旧可以使用的基建代码 | 提供基础架构、通用工具类、核心系统等 |
+| **Function** | 业务功能 | 换了引擎或UI表现依旧可以使用的业务逻辑 | 实现具体业务功能，如用户管理、经济系统、成就系统、任务系统等 |
+| **EditorTool** | 编辑器效率工具 | 换了项目依旧可以使用的编辑器工具 | 资源的自动化处理、快速创建字体资源、网络环境配置等 |
+| **RuntimeTool** | 自增插件性功能 | 换了项目依旧可以使用的运行时插件 | 自定义扩展的UI控件、UI特效、红点管理系统、访问非Unity文件路径等 |
+| **UI** | 用户界面 | 游戏的用户界面实现 | 处理游戏中的界面展示、交互逻辑等 |
+| **Packages** | 第三方插件工具 | 项目使用的第三方库和插件 | 提供外部依赖功能 |
+| **Resources** | 资源文件 | 游戏中的各种资源 | 存储模型、材质、音效、UI资源等 |
+
+## 📂 详细目录结构
+
+```
+Scripts/
+│
+├── EditorTool/                          # 编辑器效率工具
+│   └── Editor/                          # 编辑器专属代码
+│
+├── RuntimeTool/                         # 自增插件性功能
+│   ├── Editor/                          # 插件编辑器扩展
+│   └── Runtime/                         # 插件运行时代码
+│
+├── Framework/                           # 框架代码
+│   ├── Editor/                          # 框架编辑器扩展
+│   └── Runtime/                         # 框架运行时代码
+│
+├── Function/                            # 业务功能代码
+│   ├── Editor/                          # 业务编辑器扩展
+│   └── Runtime/                         # 业务运行时代码
+│       ├── AccessBus/                   # 外部可访问的事件/命令总线
+│       ├── Config/                      # 配置表数据结构
+│       ├── Data/                        # 业务功能数据结构
+│       ├── DataService/                 # 数据绑定服务
+│       ├── Server/                      # 对接服务端
+│       ├── Service/                     # 业务逻辑方法
+│       ├── Listener/                    # 各模块事件注册集中处理
+│       ├── Prewarm/                     # 预热初始化
+│       └── XxxManager.cs                # Service 管理类
+│
+└── UI/                                  # UI 相关代码
+    └── Runtime/
+        ├── UISystem/                    # UISystem 场景
+        │   ├── UIJump/                  # UI 跳转
+        │   ├── Panel/                   # 面板
+        │   │   ├── Pnl1/
+        │   │   ├── Pnl2/
+        │   │   └── Pnl3/
+        │   ├── Menu/                    # 菜单
+        │   │   ├── Menu1/
+        │   │   ├── Menu2/
+        │   │   └── Menu3/
+        │   ├── Input/                   # 输入系统
+        │   ├── Audio/                   # 音频系统
+        │   └── Config/                  # 场景配置
+        ├── GameMain/                    # GameMain 场景
+        ├── MMG/                         # MMG 场景
+        └── Loading/                     # 加载场景
+            ├── DefaultLoading/          # 默认加载
+            └── MultiplayerLoading/      # 多人加载
+```
+
+```
+Game-Project-Structure/
+├── Assets/
+│   ├── Plugins/
+│   ├── Resources/
+│   │   ├── Develop/
+│   │   ├── Release/
+│   │   │   ├── SampleEntityXXX/
+│   │   │   │   ├── Common/
+│   │   │   │   │   ├── Anime/
+│   │   │   │   │   ├── Audio/
+│   │   │   │   │   └── Config/
+│   │   │   │   └── SampleIndividualXXX/
+│   │   │   │       ├── Anime/
+│   │   │   │       ├── Audio/
+│   │   │   │       ├── Image/
+│   │   │   │       ├── Material/
+│   │   │   │       └── Prefab/
+│   │   │   └── UI/
+│   │   │       ├── Common/
+│   │   │       │   ├── Anime/
+│   │   │       │   ├── Audio/
+│   │   │       │   └── Config/
+│   │   │       └── SampleSceneXXX/
+│   │   │           ├── Config/
+│   │   │           └── Panel/
+│   │   │               └── PnlXXX/
+│   ├── Scripts/
+│   │   ├── EditorTool/
+│   │   │   └── SampleXXX/
+│   │   │       └── Editor/
+│   │   ├── Framework/
+│   │   │   └── SampleXXX/
+│   │   │       ├── Editor/
+│   │   │       └── Runtime/
+│   │   ├── Function/
+│   │   │   └── SampleXXX/
+│   │   │       ├── Editor/
+│   │   │       └── Runtime/
+│   │   │           ├── AccessBus/
+│   │   │           ├── Config/
+│   │   │           ├── Data/
+│   │   │           ├── GlobalListener/
+│   │   │           ├── LuaPlugin~/
+│   │   │           ├── Prewarm/
+│   │   │           ├── Save/
+│   │   │           ├── Server/
+│   │   │           ├── Service/
+│   │   │           └── XXXManager.cs
+│   │   ├── RuntimeTool/
+│   │   │   └── SampleXXX/
+│   │   │       ├── Editor/
+│   │   │       └── Runtime/
+│   │   └── UI/
+│   │       └── SampleSceneXXX/
+│   │           ├── Config/
+│   │           ├── Input/
+│   │           ├── Panel/
+│   │           │   └── PnlXXX/
+│   │           └── XXXJumpManager.cs
+├── Packages/
+├── .gitignore
+└── README.md
+```
+
+## 🔄 程序集引用关系
+
+采用**严格分层架构**，遵循**自上而下单向依赖**原则：
+
+```
+┌──────────────────────────────────────────────┐
+│                 EditorTool                   │  编辑器工具层
+├──────────────────────────────────────────────┤
+│                     UI                       │  UI 表现层
+├──────────────────────────────────────────────┤
+│                  Function                    │  业务逻辑核心层
+├──────────────────────────────────────────────┤
+│                 RuntimeTool                  │  插件扩展层
+├──────────────────────────────────────────────┤
+│                  Framework                   │  基建框架层
+├──────────────────────────────────────────────┤
+│                  Packages                    │  第三方依赖
+└──────────────────────────────────────────────┘
+           ▲ 依赖方向：自上而下
+```
+
+### 引用规则
+
+- **只能上引用下**：上层可以引用下层，禁止反向依赖，杜绝循环引用
+- **同层内依功能关系处理引用**：同一层级内的模块间引用根据实际功能需求决定
