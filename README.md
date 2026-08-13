@@ -1,8 +1,8 @@
 # GameDev-Structure
 
-Game Development Project File Structure
+Game Development Project File Structure（游戏开发项目文件结构示例）
 
-游戏项目目录结构示例，采用模块化、分层设计理念，确保代码的可维护性和可复用性。
+采用模块化、分层设计理念，确保代码的可维护性和可复用性。
 
 ## 📋 设计原则
 
