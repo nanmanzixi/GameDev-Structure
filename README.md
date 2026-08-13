@@ -56,19 +56,19 @@ Config（配置表结构） → Data（运行时数据结构） → DataService�
 ```
 Game-Project-Structure/
 ├── Assets/
-│   ├── Plugins/                           # 第三方插件工具（手动导入）
-│   ├── Framework/                         # 框架代码
+│   ├── Plugins/                           # 第三方插件工具（手动导入）📦
+│   ├── Framework/                         # 框架代码🏗️
 │   │   └── SampleXXX/                     # 某某框架内容
 │   │       ├── Editor/
 │   │       └── Runtime/
-│   ├── RuntimeTool/                       # 自增插件性功能
+│   ├── RuntimeTool/                       # 自增插件性功能🧩
 │   │   └── SampleXXX/                     # 某某自增插件
 │   │       ├── Editor/
 │   │       └── Runtime/
-│   ├── EditorTool/                        # 编辑器效率工具
+│   ├── EditorTool/                        # 编辑器效率工具🔧
 │   │   └── SampleXXX/                     # 某某工具
 │   │       └── Editor/                    
-│   ├── Scripts/                           # 游戏专属代码
+│   ├── Scripts/                           # 游戏专属代码⚙️
 │   │   ├── Function/                      # 业务功能代码
 │   │   │   └── SampleXXX/                 # 某某业务功能
 │   │   │       ├── Editor/
@@ -79,11 +79,12 @@ Game-Project-Structure/
 │   │   │           ├── DataService/       # 数据绑定服务（外部可访问）
 │   │   │           ├── GlobalListener/    # 始终运行的全局监听，接收网络同步事件等
 │   │   │           ├── LuaPlugin~/        # 网络服务器热更代码
-│   │   │           ├── Prewarm/           # 游戏启动预热初始化
 │   │   │           ├── Save/              # 数据保存至本地或云端服务器
 │   │   │           ├── Server/            # 对接服务端
 │   │   │           ├── Service/           # 业务逻辑方法（外部可访问）
-│   │   │           └── XXXManager.cs      # 该模块管理类（外部可访问）
+│   │   │           ├── Listener/          # 其他模块事件注册集中处理
+│   │   │           ├── Prewarm/           # 游戏启动预热初始化
+│   │   │           └── XXXManager.cs      # Service管理类（外部可访问）
 │   │   └── UI/                            # UI相关代码
 │   │       └── SampleSceneXXX/            # 按UI场景划分
 │   │           ├── Config/                # UI配置表数据结构
@@ -91,7 +92,7 @@ Game-Project-Structure/
 │   │           ├── Panel/
 │   │           │   └── PnlXXX/            # 某个UI界面
 │   │           └── XXXJumpManager.cs      # UI跳转控制
-│   ├── Resources/                         # 游戏专属资源
+│   ├── Resources/                         # 游戏专属资源🗂️
 │   │   ├── Develop/                       # 开发版本
 │   │   ├── Release/                       # 正式版本
 │   │   │   ├── SampleEntityXXX/           # 实体对象，例如角色、美术场景、Boss等
@@ -114,7 +115,7 @@ Game-Project-Structure/
 │   │   │           ├── Config/            # UI场景中的配置数据
 │   │   │           └── Panel/             # UI面板
 │   │   │               └── PnlXXX/        # 某个UI面板
-├── Packages/                              # 第三方插件工具（依赖包导入）
+├── Packages/                              # 第三方插件工具（依赖包导入）📥
 ├── .gitignore
 └── README.md
 ```
