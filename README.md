@@ -130,21 +130,21 @@ Game-Project-Structure/
 ```mermaid
 graph TB
     subgraph 应用层
-        ET[🔧 EditorTool<br/>编辑器工具层]
-        UI[🎨 UI<br/>UI 表现层]
+        ET[🔧 EditorTool<br/> 编辑器工具层]
+        UI[🎨 UI<br/> 表现层]
     end
     
     subgraph 核心层
-        FN[⚙️ Function<br/>业务逻辑核心层]
+        FN[⚙️ Function<br/> 业务逻辑核心层]
     end
     
     subgraph 基础设施层
-        RT[🧩 RuntimeTool<br/>插件扩展层]
-        FW[🏗️ Framework<br/>基建框架层]
+        RT[🧩 RuntimeTool<br/> 插件扩展层]
+        FW[🏗️ Framework<br/> 基建框架层]
     end
     
     subgraph 外部依赖
-        PKG[📦 Packages<br/>第三方依赖]
+        PKG[📦 Packages<br/> 第三方依赖]
     end
     
     ET --> UI
