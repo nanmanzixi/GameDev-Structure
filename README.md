@@ -31,115 +31,67 @@ Game Development Project File Structure
 ## 📂 详细目录结构
 
 ```
-Scripts/
-│
-├── EditorTool/                          # 编辑器效率工具
-│   └── Editor/                          # 编辑器专属代码
-│
-├── RuntimeTool/                         # 自增插件性功能
-│   ├── Editor/                          # 插件编辑器扩展
-│   └── Runtime/                         # 插件运行时代码
-│
-├── Framework/                           # 框架代码
-│   ├── Editor/                          # 框架编辑器扩展
-│   └── Runtime/                         # 框架运行时代码
-│
-├── Function/                            # 业务功能代码
-│   ├── Editor/                          # 业务编辑器扩展
-│   └── Runtime/                         # 业务运行时代码
-│       ├── AccessBus/                   # 外部可访问的事件/命令总线
-│       ├── Config/                      # 配置表数据结构
-│       ├── Data/                        # 业务功能数据结构
-│       ├── DataService/                 # 数据绑定服务
-│       ├── Server/                      # 对接服务端
-│       ├── Service/                     # 业务逻辑方法
-│       ├── Listener/                    # 各模块事件注册集中处理
-│       ├── Prewarm/                     # 预热初始化
-│       └── XxxManager.cs                # Service 管理类
-│
-└── UI/                                  # UI 相关代码
-    └── Runtime/
-        ├── UISystem/                    # UISystem 场景
-        │   ├── UIJump/                  # UI 跳转
-        │   ├── Panel/                   # 面板
-        │   │   ├── Pnl1/
-        │   │   ├── Pnl2/
-        │   │   └── Pnl3/
-        │   ├── Menu/                    # 菜单
-        │   │   ├── Menu1/
-        │   │   ├── Menu2/
-        │   │   └── Menu3/
-        │   ├── Input/                   # 输入系统
-        │   ├── Audio/                   # 音频系统
-        │   └── Config/                  # 场景配置
-        ├── GameMain/                    # GameMain 场景
-        ├── MMG/                         # MMG 场景
-        └── Loading/                     # 加载场景
-            ├── DefaultLoading/          # 默认加载
-            └── MultiplayerLoading/      # 多人加载
-```
-
-```
 Game-Project-Structure/
 ├── Assets/
-│   ├── Plugins/
-│   ├── Resources/
-│   │   ├── Develop/
-│   │   ├── Release/
-│   │   │   ├── SampleEntityXXX/
-│   │   │   │   ├── Common/
-│   │   │   │   │   ├── Anime/
-│   │   │   │   │   ├── Audio/
-│   │   │   │   │   └── Config/
-│   │   │   │   └── SampleIndividualXXX/
-│   │   │   │       ├── Anime/
-│   │   │   │       ├── Audio/
-│   │   │   │       ├── Image/
-│   │   │   │       ├── Material/
-│   │   │   │       └── Prefab/
-│   │   │   └── UI/
-│   │   │       ├── Common/
-│   │   │       │   ├── Anime/
-│   │   │       │   ├── Audio/
-│   │   │       │   └── Config/
-│   │   │       └── SampleSceneXXX/
-│   │   │           ├── Config/
-│   │   │           └── Panel/
-│   │   │               └── PnlXXX/
-│   ├── Scripts/
-│   │   ├── EditorTool/
-│   │   │   └── SampleXXX/
-│   │   │       └── Editor/
-│   │   ├── Framework/
-│   │   │   └── SampleXXX/
+│   ├── Plugins/                           # 第三方插件工具（手动导入）
+│   ├── Framework/                         # 框架代码
+│   │   └── SampleXXX/                     # 某某框架内容
+│   │       ├── Editor/
+│   │       └── Runtime/
+│   ├── RuntimeTool/                       # 自增插件性功能
+│   │   └── SampleXXX/                     # 某某自增插件
+│   │       ├── Editor/
+│   │       └── Runtime/
+│   ├── EditorTool/                        # 编辑器效率工具
+│   │   └── SampleXXX/                     # 某某工具
+│   │       └── Editor/                    
+│   ├── Scripts/                           # 游戏专属代码
+│   │   ├── Function/                      # 业务功能代码
+│   │   │   └── SampleXXX/                 # 某某业务功能
 │   │   │       ├── Editor/
 │   │   │       └── Runtime/
-│   │   ├── Function/
-│   │   │   └── SampleXXX/
-│   │   │       ├── Editor/
-│   │   │       └── Runtime/
-│   │   │           ├── AccessBus/
-│   │   │           ├── Config/
-│   │   │           ├── Data/
-│   │   │           ├── GlobalListener/
-│   │   │           ├── LuaPlugin~/
-│   │   │           ├── Prewarm/
-│   │   │           ├── Save/
-│   │   │           ├── Server/
-│   │   │           ├── Service/
-│   │   │           └── XXXManager.cs
-│   │   ├── RuntimeTool/
-│   │   │   └── SampleXXX/
-│   │   │       ├── Editor/
-│   │   │       └── Runtime/
-│   │   └── UI/
-│   │       └── SampleSceneXXX/
-│   │           ├── Config/
-│   │           ├── Input/
+│   │   │           ├── AccessBus/         # 事件/命令总线（外部可访问）
+│   │   │           ├── Config/            # 配置表数据结构
+│   │   │           ├── Data/              # 业务功能数据结构
+│   │   │           ├── DataService/       # 数据绑定服务（外部可访问）
+│   │   │           ├── GlobalListener/    # 始终运行的全局监听，接收网络同步事件等
+│   │   │           ├── LuaPlugin~/        # 网络服务器热更代码
+│   │   │           ├── Prewarm/           # 游戏启动预热初始化
+│   │   │           ├── Save/              # 数据保存至本地或云端服务器
+│   │   │           ├── Server/            # 对接服务端
+│   │   │           ├── Service/           # 业务逻辑方法（外部可访问）
+│   │   │           └── XXXManager.cs      # 该模块管理类（外部可访问）
+│   │   └── UI/                            # UI相关代码
+│   │       └── SampleSceneXXX/            # 按UI场景划分
+│   │           ├── Config/                # UI配置表数据结构
+│   │           ├── Input/                 # 玩家输入系统
 │   │           ├── Panel/
-│   │           │   └── PnlXXX/
-│   │           └── XXXJumpManager.cs
-├── Packages/
+│   │           │   └── PnlXXX/            # 某个UI界面
+│   │           └── XXXJumpManager.cs      # UI跳转控制
+│   ├── Resources/                         # 游戏专属资源
+│   │   ├── Develop/                       # 开发版本
+│   │   ├── Release/                       # 正式版本
+│   │   │   ├── SampleEntityXXX/           # 实体对象，例如角色、美术场景、Boss等
+│   │   │   │   ├── Common/                # 当前实体下的通用资源
+│   │   │   │   │   ├── Anime/             # 动画
+│   │   │   │   │   ├── Audio/             # 音效
+│   │   │   │   │   └── Config/            # 配置表数据
+│   │   │   │   └── SampleIndividualXXX/   # 个体对象，例如角色A、美术场景A、BossA等
+│   │   │   │       ├── Anime/             # 动画
+│   │   │   │       ├── Audio/             # 音效
+│   │   │   │       ├── Image/             # 静态图
+│   │   │   │       ├── Material/          # 材质
+│   │   │   │       └── Prefab/            # 预制体
+│   │   │   └── UI/                        # UI资源
+│   │   │       ├── Common/                # UI通用资源
+│   │   │       │   ├── Anime/             # 动画
+│   │   │       │   ├── Audio/             # 音效
+│   │   │       │   └── Config/            # 配置表数据
+│   │   │       └── SampleSceneXXX/        # UI场景
+│   │   │           ├── Config/            # UI场景中的配置数据
+│   │   │           └── Panel/             # UI面板
+│   │   │               └── PnlXXX/        # 某个UI面板
+├── Packages/                              # 第三方插件工具（依赖包导入）
 ├── .gitignore
 └── README.md
 ```
@@ -162,7 +114,7 @@ Game-Project-Structure/
 ├──────────────────────────────────────────────┤
 │                  Packages                    │  第三方依赖
 └──────────────────────────────────────────────┘
-           ▲ 依赖方向：自上而下
+           ▲ 依赖方向：自上而下 同层内依功能关系处理引用
 ```
 
 ### 引用规则
