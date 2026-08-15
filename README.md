@@ -1,4 +1,4 @@
-<h1 align="center">🎮 GameDev-Structure</h1>
+<h1 align="center">🎮 GameDev-FileStructure</h1>
 
 <p align="center">
   <b>Game Development Project File Structure</b><br>
