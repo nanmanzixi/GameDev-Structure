@@ -2,7 +2,7 @@
 
 <p align="center">
   <b>Game Development Project File Structure</b><br>
-  <sub>游戏开发项目文件结构示例模版</sub>
+  <sub>游戏开发-项目文件结构示例模版</sub>
 </p>
 
 <p align="center">
